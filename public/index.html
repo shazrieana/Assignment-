@@ -1,80 +1,4 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic Tac Toe</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <h1>Tic Tac Toe</h1>
-  <div id="game">
-    <div class="cell" data-index="0"></div>
-    <div class="cell" data-index="1"></div>
-    <div class="cell" data-index="2"></div>
-    <div class="cell" data-index="3"></div>
-    <div class="cell" data-index="4"></div>
-    <div class="cell" data-index="5"></div>
-    <div class="cell" data-index="6"></div>
-    <div class="cell" data-index="7"></div>
-    <div class="cell" data-index="8"></div>
-  </div>
-  <button id="restart">Restart</button>
-  <script src="script.js"></script>
-</body>
-</html>-->
 
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic Tac Toe</title>
-  <link rel="stylesheet" href="/public/style.css">
-</head>
-<body>
-  <h1>Tic Tac Toe</h1>
-  <div id="game">
-    <div class="cell" data-index="0"></div>
-    <div class="cell" data-index="1"></div>
-    <div class="cell" data-index="2"></div>
-    <div class="cell" data-index="3"></div>
-    <div class="cell" data-index="4"></div>
-    <div class="cell" data-index="5"></div>
-    <div class="cell" data-index="6"></div>
-    <div class="cell" data-index="7"></div>
-    <div class="cell" data-index="8"></div>
-  </div>
-  <button id="restart">Restart</button>
-  <script src="/public/script.js"></script>
-</body>
-</html>-->
-
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic Tac Toe</title>
-  <link rel="stylesheet" href="/Assignment git/Assignment-/public/style.css">
-</head>
-<body>
-  <h1>Tic Tac Toe</h1>
-  <div id="game">
-    <div class="cell" data-index="0"></div>
-    <div class="cell" data-index="1"></div>
-    <div class="cell" data-index="2"></div>
-    <div class="cell" data-index="3"></div>
-    <div class="cell" data-index="4"></div>
-    <div class="cell" data-index="5"></div>
-    <div class="cell" data-index="6"></div>
-    <div class="cell" data-index="7"></div>
-    <div class="cell" data-index="8"></div>
-  </div>
-  <button id="restart">Restart</button>
-  <script src="/Assignment git/Assignment-/public/script.js"></script>
-</body>
-</html>-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -138,6 +62,50 @@
     <div class="cell" data-index="8"></div>
   </div>
   <button id="restart">Restart</button>
-  <script src="/Assignment git/Assignment-/public/script.js"></script>
+  <script src=const cells = document.querySelectorAll('.cell');
+const restartButton = document.getElementById('restart');
+let currentPlayer = 'X';
+let gameState = Array(9).fill(null);
+
+cells.forEach(cell => {
+  cell.addEventListener('click', () => {
+    const index = cell.getAttribute('data-index');
+    if (!gameState[index]) {
+      gameState[index] = currentPlayer;
+      cell.textContent = currentPlayer;
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      checkWinner();
+    }
+  });
+});
+
+restartButton.addEventListener('click', () => {
+  gameState = Array(9).fill(null);
+  cells.forEach(cell => cell.textContent = '');
+  currentPlayer = 'X';
+});
+
+function checkWinner() {
+  const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+
+  winningCombinations.forEach(combination => {
+    const [a, b, c] = combination;
+    if (gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
+      alert(`${gameState[a]} is the winner!`);
+      gameState = Array(9).fill(null);
+      cells.forEach(cell => cell.textContent = '');
+    }
+  });
+}
+></script>
 </body>
 </html>
