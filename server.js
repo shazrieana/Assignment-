@@ -56,8 +56,8 @@ app.listen(port, () => {
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('./config/db');
-const userRoutes = require('./routes/userRoutes');
-const gameRoutes = require('./routes/gameRoutes');
+const userRoutes = require('./routes/user');
+const gameRoutes = require('./routes/game');
 
 const app = express();
 const port = process.env.PORT || 3000;
