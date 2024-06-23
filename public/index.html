@@ -185,7 +185,7 @@ function checkWinner() {
         let players = { 'X': 'Player 1', 'O': 'Player 2' };
 
         function updateTurn() {
-            currentTurn.textContent = Turn: ${players[currentPlayer]};
+            currentTurn.textContent = `Turn: ${players[currentPlayer]}`;
         }
 
         player1Input.addEventListener('change', () => {
