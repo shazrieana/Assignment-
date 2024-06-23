@@ -1,6 +1,4 @@
-
-
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -107,5 +105,108 @@ function checkWinner() {
   });
 }
 </script>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            margin-top: 20px;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            font-weight: bold;
+            background-color: white;
+            border: 2px solid #000;
+            cursor: pointer;
+        }
+        .input-section {
+            margin-bottom: 20px;
+        }
+        .input-section input {
+            padding: 5px;
+            margin: 5px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tic Tac Toe</h1>
+        <div class="input-section">
+            <input type="text" id="player1" placeholder="Player 1 Name">
+            <input type="text" id="player2" placeholder="Player 2 Name">
+        </div>
+        <div id="currentTurn"></div>
+        <div class="board" id="board">
+            <div class="cell" id="cell0"></div>
+            <div class="cell" id="cell1"></div>
+            <div class="cell" id="cell2"></div>
+            <div class="cell" id="cell3"></div>
+            <div class="cell" id="cell4"></div>
+            <div class="cell" id="cell5"></div>
+            <div class="cell" id="cell6"></div>
+            <div class="cell" id="cell7"></div>
+            <div class="cell" id="cell8"></div>
+        </div>
+    </div>
+    <script>
+        const board = document.getElementById('board');
+        const player1Input = document.getElementById('player1');
+        const player2Input = document.getElementById('player2');
+        const currentTurn = document.getElementById('currentTurn');
+        let currentPlayer = 'X';
+        let players = { 'X': 'Player 1', 'O': 'Player 2' };
+
+        function updateTurn() {
+            currentTurn.textContent = Turn: ${players[currentPlayer]};
+        }
+
+        player1Input.addEventListener('change', () => {
+            players['X'] = player1Input.value || 'Player 1';
+            updateTurn();
+        });
+
+        player2Input.addEventListener('change', () => {
+            players['O'] = player2Input.value || 'Player 2';
+            updateTurn();
+        });
+
+        board.addEventListener('click', (e) => {
+            if (e.target.classList.contains('cell') && e.target.textContent === '') {
+                e.target.textContent = currentPlayer;
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                updateTurn();
+            }
+        });
+
+        updateTurn();
+    </script>
 </body>
 </html>
